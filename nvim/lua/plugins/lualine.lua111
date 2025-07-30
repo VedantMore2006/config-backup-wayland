@@ -1,0 +1,143 @@
+return {
+  {
+    "nvim-lualine/lualine.nvim", -- Specifies the lualine.nvim plugin, a highly customizable statusline plugin for Neovim
+    dependencies = { -- Defines the plugins that lualine.nvim depends on
+      "nvim-tree/nvim-web-devicons", -- Dependency for file and status icons, provides devicons for visual enhancement
+      "folke/tokyonight.nvim", -- Dependency for the tokyonight theme, a popular Neovim colorscheme
+    },
+    config = function() -- Configuration function for setting up lualine.nvim
+      local colors = { -- Defines a local table to store custom color values
+        teal = "#26A69A", -- Custom teal color used for specific components (e.g., LSP name)
+      }
+      -- Function to get the first active LSP name, skipping Copilot
+      local function get_active_lsp_name()
+        local clients = vim.lsp.get_active_clients({ bufnr = 0 }) -- Retrieves all active LSP clients for the current buffer (bufnr = 0)
+        for _, client in ipairs(clients) do -- Iterates through the list of LSP clients
+          if client.name ~= "copilot" and client.name ~= "ruff" then -- Checks if the client is not Copilot
+            return client.name -- Returns the name of the first non-Copilot LSP client
+          end
+        end
+        return "No LSP" -- Returns "No LSP" if no valid LSP client is found
+      end
+
+      require("lualine").setup({ -- Calls the setup function for lualine.nvim to configure the statusline
+        options = { -- General options for lualine configuration
+          icons_enabled = true, -- Enables the use of icons in the statusline (requires nvim-web-devicons)
+          theme = "tokyonight", -- Sets the statusline theme to tokyonight, matching the colorscheme
+          component_separators = { left = "", right = "" }, -- Defines separators between components (non-section boundaries)
+          --    section_separators = { left = "", right = "" }, -- Defines separators for section boundaries, giving a smooth visual transition
+          disabled_filetypes = { -- Specifies filetypes where the statusline or winbar should be disabled
+            statusline = {}, -- Empty table means no filetypes disable the statusline
+            winbar = {}, -- Empty table means no filetypes disable the winbar
+          },
+          ignore_focus = {}, -- List of filetypes to ignore focus events (empty means none are ignored)
+          always_divide_middle = true, -- Ensures the middle section (lualine_c) is centered by dividing space equally
+          globalstatus = true, -- Enables a single global statusline for all windows (Neovim 0.7+ feature)
+          refresh = { -- Configures refresh intervals for different lualine components (in milliseconds)
+            statusline = 1000, -- Statusline refreshes every 1000ms (1 second)
+            tabline = 1000, -- Tabline refreshes every 1000ms
+            winbar = 1000, -- Winbar refreshes every 1000ms
+          },
+        },
+        sections = { -- Defines the components for each section of the statusline in active windows
+          lualine_a = { -- Section A (typically for mode information)
+            {
+              "mode", -- Displays the current Neovim mode (e.g., NORMAL, INSERT)
+              separator = { left = "", right = "" }, -- Custom separators for the mode component
+              --    padding = 2, -- Adds 2 spaces of padding around the component
+            },
+          },
+          lualine_b = { -- Section B (typically for version control and diagnostics)
+            {
+              "branch", -- Displays the current git branch
+              icon = "", -- Icon for the branch component (git branch symbol)
+              separator = { right = "" }, -- Custom separators for the branch component
+              --   padding = 2, -- Adds 2 spaces of padding around the component
+            },
+            {
+              "diff", -- Displays git diff status (added, modified, removed lines)
+              symbols = { added = "", modified = "柳", removed = "" }, -- Custom symbols for git diff statuses
+              separator = { left = "", right = "" }, -- Custom separators for the diff component
+              --    padding = 2, -- Adds 2 spaces of padding around the component
+            },
+            {
+              "diagnostics", -- Displays LSP diagnostics (errors, warnings, etc.)
+              sources = { "nvim_lsp" }, -- Specifies that diagnostics come from Neovim's built-in LSP
+              symbols = { error = "", warn = "", info = "", hint = "" }, -- Custom symbols for diagnostic types
+              --  separator = { left = "", right = "" }, -- Custom separators for the diagnostics component
+              --   padding = 2, -- Adds 2 spaces of padding around the component
+            },
+          },
+          lualine_c = { -- Section C (typically for file information, centered in the statusline)
+            {
+              "filename", -- Displays the current file name
+              path = 1, -- Shows the relative path to the file (1 = relative path, 0 = just filename, 2 = absolute path)
+              symbols = { -- Custom symbols for file status
+                modified = " ●", -- Symbol for modified (unsaved) files
+                readonly = " ", -- Symbol for read-only files
+                unnamed = "[No Name]", -- Text for buffers without a file name
+              },
+            },
+          },
+          lualine_x = { -- Section X (right-aligned, typically for file and LSP information)
+            {
+              get_active_lsp_name, -- Custom function to display the first non-Copilot LSP name
+              icon = "", -- Icon for the LSP component (gear symbol)
+              --     separator = { left = "", right = "" }, -- Custom separators for the LSP component
+              colors = { percentage = colors.teal }, -- Applies the custom teal color to the component
+              --      padding = 2, -- Adds 2 spaces of padding around the component
+            },
+            {
+              "encoding", -- Displays the file encoding (e.g., utf-8)
+              --    separator = { left = "", right = "" }, -- Custom separators for the encoding component
+              --     padding = 2, -- Adds 2 spaces of padding around the component
+            },
+            {
+              "fileformat", -- Displays the file format (e.g., unix, dos)
+              symbols = { -- Custom symbols for file formats
+                unix = "", -- Symbol for Unix line endings (LF)
+                dos = "", -- Symbol for DOS/Windows line endings (CRLF)
+                mac = "", -- Symbol for legacy Mac line endings (CR)
+              },
+              --  separator = { left = "", right = "" }, -- Custom separators for the fileformat component
+              --    padding = 2, -- Adds 2 spaces of padding around the component
+            },
+            {
+              "filetype", -- Displays the file type (e.g., lua, python)
+              colored = true, -- Enables color-coding for the filetype based on the theme
+              icon_only = true, -- Shows both the icon and the filetype name
+              --   separator = { right = "" }, -- Custom separators for the filetype component
+              --   padding = 2, -- Adds 2 spaces of padding around the component
+            },
+          },
+          lualine_y = { -- Section Y (right-aligned, typically for progress information)
+            {
+              "progress", -- Displays the current line progress (e.g., percentage through the file)
+              --         separator = { left = "", right = "" }, -- Custom separators for the progress component
+              --    padding = 2, -- Adds 2 spaces of padding around the component
+            },
+          },
+          lualine_z = { -- Section Z (rightmost section, typically for cursor location)
+            {
+              "location", -- Displays the cursor's line and column position
+              separator = { left = "", right = "" }, -- Custom separators for the location component
+              --    padding = 2, -- Adds 2 spaces of padding around the component
+            },
+          },
+        },
+        inactive_sections = { -- Defines the components for each section in inactive windows
+          lualine_a = {}, -- No components in section A for inactive windows
+          lualine_b = {}, -- No components in section B for inactive windows
+          lualine_c = { "filename" }, -- Displays only the filename in section C for inactive windows
+          lualine_x = { "location" }, -- Displays only the cursor location in section X for inactive windows
+          lualine_y = {}, -- No components in section Y for inactive windows
+          lualine_z = {}, -- No components in section Z for inactive windows
+        },
+        tabline = {}, -- Empty configuration for the tabline (not used in this setup)
+        winbar = {}, -- Empty configuration for the winbar (not used in this setup)
+        inactive_winbar = {}, -- Empty configuration for the inactive winbar (not used in this setup)
+        extensions = { "fugitive", "nvim-tree", "toggleterm" }, -- Enables lualine extensions for git fugitive, nvim-tree, and toggleterm plugins
+      })
+    end,
+  },
+}

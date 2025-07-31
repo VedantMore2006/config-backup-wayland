@@ -208,3 +208,4 @@ set -g fish_autosuggestion_delay 100
 if type -q fzf
     fzf --fish | source
 end
+alias config="cd ~/.config"

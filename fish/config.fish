@@ -209,3 +209,8 @@ if type -q fzf
     fzf --fish | source
 end
 alias config="cd ~/.config"
+alias kconfig="nvim ~/.config/kitty/kitty.conf"
+alias fconfig="nvim ~/.config/fish/config.fish"
+alias rkitty="source ~/.config/kitty/kitty.conf"
+alias practice="cd ~/Project/practice"
+alias rfish="source ~/.config/fish/config.fish"

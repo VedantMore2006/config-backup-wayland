@@ -9,39 +9,6 @@ vim.keymap.set("n", "<leader>Q", ":quit!<CR>", { desc = "Quit Neovim (Force)" })
 vim.keymap.set("n", "<leader>wq", ":wq<CR>", { desc = "Save and Quit Neovim" })
 vim.keymap.set("n", "<leader>ss", ":write<CR>", { desc = "Save File" })
 
--- ~/.config/nvim/init.lua or lua/keybindings.lua
-
--- IMPORTANT: These mappings will ONLY work if nvim-cmp
--- or your completion plugin detects them and uses them for navigation.
--- nvim-cmp specifically uses its own 'mapping' table for these,
--- so direct global mappings like these might be overridden or not used
--- by the completion plugin itself for list navigation.
-
--- 1. Tab to accept the selected auto-suggestion
--- This mapping assumes your completion plugin is set up to accept
--- on <Tab> or will use a common completion action.
--- In nvim-cmp, this is typically handled within its own mapping.
--- This general 'insert mode' mapping will just insert a tab if no completion is active.
-vim.api.nvim_set_keymap("i", "<Tab>", "<C-y>", { noremap = true, silent = true, desc = "Accept Completion" })
--- <C-y> is the standard Vim command to accept the currently displayed completion.
--- This is a generic way, but nvim-cmp often has more sophisticated handling for <Tab>.
-
--- 2. Shift-Tab to go down in the auto-suggestion list
--- As explained, plain 'Shift' cannot be mapped. '<S-Tab>' is the combination.
-vim.api.nvim_set_keymap(
-  "i",
-  "<S-Tab>",
-  "<C-n>",
-  { noremap = true, silent = true, desc = "Next Completion Item (Down)" }
-)
--- <C-n> is the standard Vim command to go to the next completion item.
-
--- Optional: Shift-J for down, Shift-K for up (more Vim-like for navigation)
--- vim.api.nvim_set_keymap('i', '<S-j>', '<C-n>', { noremap = true, silent = true, desc = 'Next Completion Item (Shift-J)' })
--- vim.api.nvim_set_keymap('i', '<S-k>', '<C-p>', { noremap = true, silent = true, desc = 'Previous Completion Item (Shift-K)' })
-
--- Add descriptions for better discoverability with plugins like 'which-key'
-
 -- Buffer Navigation (Leader + 1-9, and Leader + 0 for buffer 10)
 for i = 1, 9 do
   vim.keymap.set("n", "<leader>" .. i, ":BufferLineGoToBuffer " .. i .. "<CR>", { desc = "Go to Buffer " .. i })

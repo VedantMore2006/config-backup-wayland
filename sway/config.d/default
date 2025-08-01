@@ -215,6 +215,7 @@ bindsym {
     # Delete an entry from the clipboard manager
     $mod+Ctrl+x exec cliphist list | fuzzel -d -w 90 -l 30 -t cc9393ff -S cc9393ff -p "Select an entry to delete it from cliphist:"| cliphist delete
     # Note: you can clear all cliphist entries by running `cliphist wipe`
+    $mod+q exec wlogout
 }
 ##################pycharm execuition #############################
 bindsym $mod+p exec ~/Python/pycharm-2025.1.3.1/bin/pycharm.sh

@@ -11,7 +11,7 @@ exec hash dbus-update-activation-environment 2>/dev/null && \
 # Idle configuration
 #exec swayidle idlehint 1
 
-exec_always ~/.config/swaylock/autolock.sh  
+exec ~/.config/swaylock/autolock.sh  
 
 # Desktop notifications
 exec mako

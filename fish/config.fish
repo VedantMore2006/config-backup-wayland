@@ -11,6 +11,15 @@ set -xU MANROFFOPT -c
 # Hint to exit PKGBUILD review in Paru
 set -x PARU_PAGER "less -P \"Press 'q' to exit the PKGBUILD review.\""
 
+# Wayland Fix
+set -x QT_QPA_PLATFORM wayland
+set -x XDG_CURRENT_DESKTOP sway
+set -x XDG_SESSION_DESKTOP sway
+set -x XDG_CURRENT_SESSION_TYPE wayland
+set -x GDK_BACKEND "wayland,x11"
+set -x MOZ_ENABLE_WAYLAND 1
+set -x QT_QPA_PLATFORMTHEME qt5ct
+
 ## Export variable need for qt-theme
 if type qtile >>/dev/null 2>&1
     set -x QT_QPA_PLATFORMTHEME qt5ct

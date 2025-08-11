@@ -84,7 +84,7 @@
                         "name": "Screen Capture (PipeWire)",
                         "source_uuid": "8a54f6d1-e3db-47be-a93d-539e06333050",
                         "visible": true,
-                        "locked": false,
+                        "locked": true,
                         "rot": 0.0,
                         "scale_ref": {
                             "x": 1920.0,
@@ -139,7 +139,7 @@
                         "name": "Video Capture Device (V4L2)",
                         "source_uuid": "cf684cf0-ffd6-4bc0-afad-4ad55fd01c87",
                         "visible": true,
-                        "locked": false,
+                        "locked": true,
                         "rot": 0.0,
                         "scale_ref": {
                             "x": 1920.0,
@@ -304,7 +304,7 @@
     "transition_duration": 300,
     "preview_locked": false,
     "scaling_enabled": false,
-    "scaling_level": -7,
+    "scaling_level": -6,
     "scaling_off_x": 0.0,
     "scaling_off_y": 0.0,
     "virtual-camera": {

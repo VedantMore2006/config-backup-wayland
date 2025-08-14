@@ -88,13 +88,7 @@ tooltip label {
 #bluetooth,
 #tray,
 #clock,
-#custom-settings,
-#custom-power,
-#custom-reboot,
-#custom-reboot-uefi,
-#custom-log-off,
-#custom-suspend,
-#custom-lock {
+#custom-settings {
     background: rgba(129,161,193,0.4);
     border-radius: 4px;
     box-shadow: 0 0 10px rgba(0,0,0,0.8);
@@ -120,13 +114,7 @@ tooltip label {
 #tray:hover,
 #tray .active:hover,
 #clock:hover,
-#custom-settings:hover,
-#custom-power:hover,
-#custom-reboot:hover,
-#custom-reboot-uefi:hover,
-#custom-log-off:hover,
-#custom-suspend:hover,
-#custom-lock:hover {
+#custom-settings:hover {
     background: rgba(129,161,193,0.8);
     box-shadow: 0 0 10px rgba(0,0,0,0.8);
 }

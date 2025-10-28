@@ -1,6 +1,6 @@
 {
     "DesktopAudioDevice1": {
-        "prev_ver": 520159233,
+        "prev_ver": 536870913,
         "name": "Desktop Audio",
         "uuid": "94736c63-26cd-4ede-84c1-3d0038b5d5b3",
         "id": "pulse_output_capture",
@@ -31,13 +31,13 @@
         "private_settings": {}
     },
     "AuxAudioDevice1": {
-        "prev_ver": 520159233,
+        "prev_ver": 536870913,
         "name": "Mic/Aux",
         "uuid": "45c5963d-9744-48dd-979e-7af126914310",
         "id": "pulse_input_capture",
         "versioned_id": "pulse_input_capture",
         "settings": {
-            "device_id": "default"
+            "device_id": "alsa_input.pci-0000_00_1f.3.analog-stereo"
         },
         "mixers": 255,
         "sync": 0,
@@ -45,7 +45,7 @@
         "volume": 1.0,
         "balance": 0.5,
         "enabled": true,
-        "muted": false,
+        "muted": true,
         "push-to-mute": false,
         "push-to-mute-delay": 0,
         "push-to-talk": false,
@@ -71,13 +71,13 @@
     "name": "Untitled",
     "sources": [
         {
-            "prev_ver": 520159233,
+            "prev_ver": 536870913,
             "name": "Scene",
             "uuid": "59dbcd4e-efc4-4f20-b7f6-d3fa345cd4e5",
             "id": "scene",
             "versioned_id": "scene",
             "settings": {
-                "id_counter": 3,
+                "id_counter": 4,
                 "custom_size": false,
                 "items": [
                     {
@@ -134,61 +134,6 @@
                             "duration": 0
                         },
                         "private_settings": {}
-                    },
-                    {
-                        "name": "Video Capture Device (V4L2)",
-                        "source_uuid": "cf684cf0-ffd6-4bc0-afad-4ad55fd01c87",
-                        "visible": true,
-                        "locked": true,
-                        "rot": 0.0,
-                        "scale_ref": {
-                            "x": 1920.0,
-                            "y": 1080.0
-                        },
-                        "align": 5,
-                        "bounds_type": 0,
-                        "bounds_align": 0,
-                        "bounds_crop": false,
-                        "crop_left": 0,
-                        "crop_top": 0,
-                        "crop_right": 0,
-                        "crop_bottom": 0,
-                        "id": 3,
-                        "group_item_backup": false,
-                        "pos": {
-                            "x": 1580.0,
-                            "y": 823.0
-                        },
-                        "pos_rel": {
-                            "x": 1.1481481790542603,
-                            "y": 0.5240740776062012
-                        },
-                        "scale": {
-                            "x": 1.071874976158142,
-                            "y": 1.0708333253860474
-                        },
-                        "scale_rel": {
-                            "x": 1.071874976158142,
-                            "y": 1.0708333253860474
-                        },
-                        "bounds": {
-                            "x": 0.0,
-                            "y": 0.0
-                        },
-                        "bounds_rel": {
-                            "x": 0.0,
-                            "y": 0.0
-                        },
-                        "scale_filter": "disable",
-                        "blend_method": "default",
-                        "blend_type": "normal",
-                        "show_transition": {
-                            "duration": 0
-                        },
-                        "hide_transition": {
-                            "duration": 0
-                        },
-                        "private_settings": {}
                     }
                 ]
             },
@@ -206,9 +151,7 @@
             "hotkeys": {
                 "OBSBasic.SelectScene": [],
                 "libobs.show_scene_item.1": [],
-                "libobs.hide_scene_item.1": [],
-                "libobs.show_scene_item.3": [],
-                "libobs.hide_scene_item.3": []
+                "libobs.hide_scene_item.1": []
             },
             "deinterlace_mode": 0,
             "deinterlace_field_order": 0,
@@ -217,43 +160,14 @@
             "private_settings": {}
         },
         {
-            "prev_ver": 520159233,
+            "prev_ver": 536870913,
             "name": "Screen Capture (PipeWire)",
             "uuid": "8a54f6d1-e3db-47be-a93d-539e06333050",
             "id": "pipewire-screen-capture-source",
             "versioned_id": "pipewire-screen-capture-source",
             "settings": {
                 "ShowCursor": true,
-                "RestoreToken": "6898ad17-4145-4562-ac02-633e9161260d"
-            },
-            "mixers": 0,
-            "sync": 0,
-            "flags": 0,
-            "volume": 1.0,
-            "balance": 0.5,
-            "enabled": true,
-            "muted": false,
-            "push-to-mute": false,
-            "push-to-mute-delay": 0,
-            "push-to-talk": false,
-            "push-to-talk-delay": 0,
-            "hotkeys": {},
-            "deinterlace_mode": 0,
-            "deinterlace_field_order": 0,
-            "monitoring_type": 0,
-            "private_settings": {}
-        },
-        {
-            "prev_ver": 520159233,
-            "name": "Video Capture Device (V4L2)",
-            "uuid": "cf684cf0-ffd6-4bc0-afad-4ad55fd01c87",
-            "id": "v4l2_input",
-            "versioned_id": "v4l2_input",
-            "settings": {
-                "device_id": "/dev/video0",
-                "input": 0,
-                "pixelformat": 1196444237,
-                "resolution": 1374389534960
+                "RestoreToken": "22606757-bad1-4b3d-b178-72f7178461df"
             },
             "mixers": 0,
             "sync": 0,
@@ -304,12 +218,9 @@
     "transition_duration": 300,
     "preview_locked": false,
     "scaling_enabled": false,
-    "scaling_level": -6,
+    "scaling_level": -7,
     "scaling_off_x": 0.0,
     "scaling_off_y": 0.0,
-    "virtual-camera": {
-        "type2": 3
-    },
     "modules": {
         "scripts-tool": [],
         "output-timer": {

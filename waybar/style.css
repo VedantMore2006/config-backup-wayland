@@ -126,8 +126,7 @@ tooltip label {
     box-shadow: none;
 }
 
-#custom-launcher,
-#custom-power {
+#custom-launcher {
     padding-right: 1.1rem;
 }
 
@@ -222,3 +221,4 @@ tooltip label {
     animation-iteration-count: infinite;
     animation-direction: alternate;
 }
+

@@ -43,7 +43,7 @@
     },
 
 // Configuration - modules-center
-    
+
     "modules-center": [
         "network"
     ],
@@ -70,8 +70,7 @@
         "wireplumber",
         "battery",
         "group/settings",
-        "clock",
-        "group/power",
+        "clock"
     ],
 
     "privacy": {
@@ -129,7 +128,7 @@
         "on-click-right": "kitty -T waybar_garuda-update -e bash -c 'garuda-update && (read -p \"Update complete. Press Enter to exit.\" && exit 0) || (read -p \"Update failed. Press Enter to exit.\" && exit 1)'",
     },
 
-       
+
     "group/resources": {
         "orientation": "inherit",
         "drawer": {
@@ -153,7 +152,7 @@
             "critical": 90,
         },
     },
-    
+
     "temperature": {
         "critical-threshold": 80,
         "format-critical": " {temperatureC}°C",
@@ -173,7 +172,7 @@
     "memory": {
         "interval": 5,
         "format": " {}%",
-        "on-click": "kitty -T waybar_btm -e btm", 
+        "on-click": "kitty -T waybar_btm -e btm",
         "states": {
             "warning": 70,
             "critical": 90
@@ -243,7 +242,7 @@
         "on-scroll-up": "brightnessctl -c backlight set +5%"
     },
 
-    "bluetooth": { 
+    "bluetooth": {
     	"format-connected": "󰂱",
     	"format-on": "󰂯",
     	"format-off": "󰂲",

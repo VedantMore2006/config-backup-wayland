@@ -194,6 +194,17 @@ alias remove="sudo pacman -Rns "
 alias rmo="sudo pacman -Rns $(pacman -Qdtq)"
 alias y="yay -S "
 alias info="pacman -Qs "
+alias activate_conda="conda activate condaenv"
+
+# Alias for JupyterLab
+alias jl='jupyter lab --no-browser &; xdg-open http://localhost:8888/lab'
+
+# Alias for classic notebook
+alias jn='jupyter notebook --no-browser &; xdg-open http://localhost:8888/tree'
+
+source /home/vedant/anaconda3/etc/fish/conf.d/conda.fish
+
+conda activate base
 
 # Bind keys for autosuggestions and history
 function fish_user_key_bindings
@@ -233,3 +244,26 @@ alias ga="git add"
 alias gcm="git commit -m"
 alias gp="git push -u origin master"
 alias gforce="git push --force origin master"
+alias ctree="~/tree.sh"
+alias data_split="python ~/Python/python_status/scripts/split_yolo_dataset.py"
+set -x TESSDATA_PREFIX /usr/share/tessdata
+set -gx PATH /usr/local/bin $PATH
+set -gx LD_LIBRARY_PATH /usr/local/lib $LD_LIBRARY_PATH
+set -gx CFLAGS -I/usr/local/include
+set -gx LDFLAGS -L/usr/local/lib
+set -gx PYENV_ROOT $HOME/.pyenv
+if test -d $PYENV_ROOT/bin
+    set -gx PATH $PYENV_ROOT/bin $PATH
+end
+pyenv init - | source
+pyenv virtualenv-init - | source
+set -gx PATH /usr/local/bin $PATH
+set -gx LD_LIBRARY_PATH /usr/local/lib $LD_LIBRARY_PATH
+set -gx CFLAGS -I/usr/local/include
+set -gx LDFLAGS -L/usr/local/lib
+set -gx PYENV_ROOT $HOME/.pyenv
+if test -d $PYENV_ROOT/bin
+    set -gx PATH $PYENV_ROOT/bin $PATH
+end
+pyenv init - | source
+pyenv virtualenv-init - | source

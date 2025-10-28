@@ -38,6 +38,15 @@ bindsym {
     # Start your launcher
     $mod+d exec $launcher
 
+    #Lanuch VS-Code
+    $mod+w exec code
+
+    # Launch RhythmBox
+    $mod+m exec rhythmbox
+
+    # Launch
+
+
     # Menu
     $mod+Shift+d exec $menu
 
@@ -45,7 +54,7 @@ bindsym {
     Alt+Tab exec swayr switch-to-urgent-or-lru-window
 
     # Lock screen
-    $mod+l exec gtklock
+    $mod+l exec swaylock
 
     # Activities
     $mod+Tab exec swayr switch-window
@@ -208,8 +217,6 @@ bindsym {
     $mod+e exec thunar
     # Launch the browser
     $mod+b exec brave
-    # Launch the text editor
-    $mod+m exec mousepad
     # Launch the clipboard manager
     $mod+v exec cliphist list | fuzzel -d -w 90 -l 30 -p "Select an entry to copy it to your clipboard buffer:"| cliphist decode | wl-copy
     # Delete an entry from the clipboard manager

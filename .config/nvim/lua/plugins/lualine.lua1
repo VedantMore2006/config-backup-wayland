@@ -1,0 +1,132 @@
+return {
+  {
+    "nvim-lualine/lualine.nvim",
+    dependencies = {
+      "nvim-tree/nvim-web-devicons",
+      "folke/tokyonight.nvim",
+    },
+    config = function()
+      local colors = {
+        teal = "#26A69A",
+      }
+      local icons = LazyVim.config.icons
+
+      local function get_active_lsp_name()
+        local clients = vim.lsp.get_active_clients({ bufnr = 0 })
+        for _, client in ipairs(clients) do
+          if client.name ~= "copilot" and client.name ~= "ruff" then
+            return client.name
+          end
+        end
+        return "No LSP"
+      end
+
+      -- Function to get the current code section (e.g., function or class name)
+      local function get_code_section()
+        local navic = require("nvim-navic")
+        if navic.is_available() then
+          local location = navic.get_location()
+          return location ~= "" and location or "No Section"
+        end
+        return "No Section"
+      end
+
+      require("lualine").setup({
+        options = {
+          icons_enabled = true,
+          theme = "tokyonight",
+          component_separators = { left = "", right = "" },
+          section_separators = { left = "", right = "" },
+          disabled_filetypes = {
+            statusline = {},
+            winbar = {},
+          },
+          ignore_focus = {},
+          always_divide_middle = true,
+          globalstatus = true,
+          refresh = {
+            statusline = 1000,
+            tabline = 1000,
+            winbar = 1000,
+          },
+        },
+        sections = {
+          lualine_a = { "mode" },
+          lualine_b = {
+            {
+              "branch",
+              icon = "",
+            },
+            {
+              "diff",
+              symbols = {
+                added = icons.git.added,
+                modified = icons.git.modified,
+                removed = icons.git.removed,
+              },
+            },
+            {
+              "diagnostics",
+              sources = { "nvim_lsp" },
+              symbols = {
+                error = icons.diagnostics.Error,
+                warn = icons.diagnostics.Warn,
+                info = icons.diagnostics.Info,
+                hint = icons.diagnostics.Hint,
+              },
+            },
+          },
+          lualine_c = {
+            { LazyVim.lualine.root_dir() },
+            {
+              "diagnostics",
+              symbols = {
+                error = icons.diagnostics.Error,
+                warn = icons.diagnostics.Warn,
+                info = icons.diagnostics.Info,
+                hint = icons.diagnostics.Hint,
+              },
+            },
+            { "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 } },
+            { LazyVim.lualine.pretty_path() },
+          },
+          lualine_x = {
+            {
+              get_active_lsp_name,
+              icon = "",
+              colors = { percentage = colors.teal },
+            },
+            { "encoding" },
+            {
+              "fileformat",
+              symbols = {
+                unix = "",
+                dos = "",
+                mac = "",
+              },
+            },
+            {
+              "filetype",
+              colored = true,
+              icon_only = true,
+            },
+          },
+          lualine_y = { "progress" },
+          lualine_z = { "location" },
+        },
+        inactive_sections = {
+          lualine_a = {},
+          lualine_b = {},
+          lualine_c = { "filename" },
+          lualine_x = { "location" },
+          lualine_y = {},
+          lualine_z = {},
+        },
+        tabline = {},
+        winbar = {},
+        inactive_winbar = {},
+        extensions = { "fugitive", "nvim-tree", "toggleterm" },
+      })
+    end,
+  },
+}

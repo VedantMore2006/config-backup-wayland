@@ -166,8 +166,7 @@
             "id": "pipewire-screen-capture-source",
             "versioned_id": "pipewire-screen-capture-source",
             "settings": {
-                "ShowCursor": true,
-               
+                "ShowCursor": true
             },
             "mixers": 0,
             "sync": 0,
